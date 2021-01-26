@@ -5,10 +5,17 @@ const db = client.db('hospital')
 const user = db.collection('user')
 
 class User {
-  static async findAll() {
-    console.log('Find all users')
+  static async findAll(query) {
+    let condition = {}
+
+    if (Object.keys(query).length > 0) {
+      for (let key in query) {
+        condition[key] = { $regex: new RegExp(query[key]), $options: 'i' }
+      }
+    }
+
     try {
-      const documents = await user.find().toArray()
+      const documents = await user.find(condition).toArray()
       return documents
     } catch (error) {
       return error

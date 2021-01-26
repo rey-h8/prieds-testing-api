@@ -4,7 +4,7 @@ const Queue = require('../models/Queue')
 class Controller {
   static async userFindAll(req, res, next) {
     try {
-      const documents = await User.findAll()
+      const documents = await User.findAll(req.query)
       res.status(200).json(documents)
     } catch (error) {
       next(error)
