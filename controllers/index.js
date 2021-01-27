@@ -3,6 +3,7 @@ const Queue = require('../models/Queue')
 
 class Controller {
   static async userFindAll(req, res, next) {
+    console.log('FIND ALL USERS')
     try {
       const documents = await User.findAll(req.query)
       res.status(200).json(documents)

@@ -2,6 +2,7 @@ const { MongoClient } = require('mongodb')
 
 var createError = require('http-errors')
 var express = require('express')
+var cors = require('cors')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
@@ -54,6 +55,7 @@ async function run() {
     app.use(cookieParser())
     app.use(express.static(path.join(__dirname, 'public')))
 
+    app.use(cors())
     app.use(routes)
 
     // catch 404 and forward to error handler

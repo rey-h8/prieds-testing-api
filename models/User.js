@@ -6,6 +6,7 @@ const user = db.collection('user')
 
 class User {
   static async findAll(query) {
+    console.log('find all users')
     let condition = {}
 
     if (Object.keys(query).length > 0) {
